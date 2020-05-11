@@ -8,8 +8,9 @@
 <body>
 	<script>
 		let script = document.createElement('script');
-		script.src = 'http://ceshidizhi&callback=callback';
+		script.src = 'http://localhost:9001/test?demo="demo"&callback=callback';
 		document.body.appendChild(script);
+		
 		function callback(res) {
 		  console.log(res);
 		}
