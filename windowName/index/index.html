@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		let xhr = new XMLHttpRequest()
+		xhr.open("GET",'http://localhost:8080/demo/index.json',true);
+		xhr.send();
+		
+		xhr.onreadystatechange = () => {
+			console.log(xhr.readyState)
+		}
+		
+	
+		let iframe = document.createElement('iframe')
+		iframe.style.display = 'none'
+		let state = 0
+		
+		iframe.onload = () => {
+			if (state === 1) {
+				let data = iframe.contentWindow.name
+				console.log(data);
+				iframe.contentWindow.document.write('');
+				iframe.contentWindow.close();
+				document.body.removeChild(iframe)
+			} else {
+				state = 1;
+				iframe.contentWindow.location = 'http://localhost:9000/proxy.html';
+			}
+		}
+		
+		iframe.src = "http://localhost:9001"
+		document.body.appendChild(iframe)
+	</script>
+</body>
+</html>
